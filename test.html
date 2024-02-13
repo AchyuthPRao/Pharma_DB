@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch and Submit Data</title>
+</head>
+<body>
+    <h1>Fetch and Submit Data to Server</h1>
+    
+    <!-- Form for input -->
+    <form id="raceForm">
+        <label for="raceName">Race Name:</label>
+        <input type="text" id="raceName" name="raceName" required>
+
+        <label for="driverName">Driver Name:</label>
+        <input type="text" id="driverName" name="driverName" required>
+
+        <!-- Add dropdown for Driver Standings -->
+        <label for="driverStandings">Driver Standings:</label>
+        <select id="driverStandings" name="driverStandings" required>
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <!-- Add dropdown for Constructor Points -->
+        <label for="constructorPoints">Constructor Points:</label>
+        <select id="constructorPoints" name="constructorPoints" required>
+            <option value="10">10 points</option>
+            <option value="8">8 points</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <!-- Add dropdown for Race Win -->
+        <label for="raceWin">Race Win:</label>
+        <select id="raceWin" name="raceWin" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+
+        <!-- Add dropdown for Points Scored by Driver from Team -->
+        <label for="pointsScored">Points Scored by Driver from Team:</label>
+        <select id="pointsScored" name="pointsScored" required>
+            <option value="5">5 points</option>
+            <option value="3">3 points</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <!-- ... (add more dropdowns as needed) ... -->
+
+        <button type="button" onclick="submitData()">Submit</button>
+    </form>
+
+
+    <hr>
+
+    <h2>Fetched Data</h2>
+    <div id="dataContainer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchData();
+        });
+
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:4000/fetchAllData');
+                const data = await response.json();
+                console.log(data);
+                displayData(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        function displayData(data) {
+            const dataContainer = document.getElementById('dataContainer');
+            let table = dataContainer.querySelector('table');
+
+            if (data.length === 0) {
+                dataContainer.innerHTML = '<p>No data available</p>';
+                return;
+            }
+
+            
+            if (!table) {
+                table = document.createElement('table');
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Race Name</th>
+                        <th>Driver Name</th>
+                        <th>Driver Standings</th>
+                        <th>Constructor Points</th>
+                        <th>Race Win</th>
+                        <th>Points Scored</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${data.map(row => `
+                        <tr>
+                            <td>${row.id}</td>
+                            <td>${row.raceName}</td>
+                            <td>${row.driverName}</td>
+                            <td>${row.driverStandings}</td>
+                            <td>${row.constructorPoints}</td>
+                            <td>${row.raceWin}</td>
+                            <td>${row.pointsScored}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            `;
+
+            dataContainer.appendChild(table);
+        }
+    }
+
+        async function submitData() {
+            const raceName = document.getElementById('raceName').value;
+            const driverName = document.getElementById('driverName').value;
+            const driverStandings = document.getElementById('driverStandings').value;
+            const constructorPoints = document.getElementById('constructorPoints').value;
+            const raceWin = document.getElementById('raceWin').value;
+            const pointsScored = document.getElementById('pointsScored').value;
+
+            // Add other input fields and get their values
+
+            const formData = {
+                raceName,
+                driverName,
+                driverStandings,
+                constructorPoints,
+                raceWin,
+                pointsScored,
+
+                // Add other properties
+            };
+
+            try {
+                const response = await fetch('http://localhost:4000/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                const result = await response.text();
+                console.log(result);
+
+                // Fetch updated data after submission
+                fetchData();
+            } catch (error) {
+                console.error('Error submitting data:', error);
+            }
+        }
+    </script>
+</body>
+</html>
