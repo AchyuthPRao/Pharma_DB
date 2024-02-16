@@ -1,9 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: "Poppins", sans-serif;
+    /* background-color: #f4f4f4; */
     margin: 0;
     padding: 0;
-    
+    height: 100vh;
 }
 
 .container {
@@ -18,6 +21,21 @@ body {
 form {
     display: flex;
     flex-direction: column;
+    width: fit-content;
+}
+.form-parent{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+.form-contain{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f0f0;
+    padding: 10px;
+    border-radius: 12px;
 }
 
 label {
@@ -25,19 +43,61 @@ label {
 }
 
 button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #4caf50;
-    color: #fff;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+    outline: none;
+    background-color: #28e224;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+    transition: all ease 0.1s;
+    box-shadow: 0px 5px 0px 0px #0b9709;
+  }
+  
+  button:active {
+    transform: translateY(5px);
+    box-shadow: 0px 0px 0px 0px #0b9709;
+  }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #0b9709;
 }
 
 #queryResult {
     margin-top: 20px;
+}
+/* Apply styles to all tables */
+table {
+    width: 100%;
+    border-radius: 10px; /* Set border-radius for rounded corners */
+}
+
+/* Apply styles to table headers */
+th {
+    padding: 15px; /* Increase inner padding for table headers */
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+/* Apply styles to table cells */
+td {
+    padding: 15px; /* Increase inner padding for table cells */
+    text-align: center;
+}
+
+/* Apply styles to alternate rows for better readability */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Apply styles to all h2 headers */
+h2 {
+    text-align: center;
+}
+
+/* Apply styles to container (adjust if necessary) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
