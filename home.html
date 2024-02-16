@@ -1,223 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pharmaceutical Database</title>
-    <link rel="stylesheet" href="home.css" />
-  </head>
 
-  <body>
-    <div class="container">
-      <h1 style='text-align: center'>Pharmaceutical Database</h1>
-      <!DOCTYPE html>
-      <html lang="en">
-        <body>
-          <!-- Form to insert data into the orders table -->
-          <h2 style='text-align: center'>Order Drug/Medicine</h2>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pharmaceutical Database</title>
+  <link rel="stylesheet" href="home.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:wght@500&display=swap"
+    rel="stylesheet">
+</head>
+<style>
+  body{
+      font-family: "Poppins", sans-serif;
+      background-image: url('bg-medic.jpg');
+      background-size: cover;
+  }
+</style>
+<body>
+
+  <div class="container">
+    <h1 class="underline" style='text-align: center'>Pharmaceutical Database</h1>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <body>
+      <!-- Form to insert data into the orders table -->
+      <div class="form-parent">
+        <div class="form-contain">
           <form id="orderForm">
-            <label for="drug_id">Drug ID:</label>
-            <input type="text" id="drug_id" name="drug_id" required /><br />
+        <h2>Place Order</h2>
+        <label for="drug_id">Drug ID:</label>
+        <input type="text" id="drug_id" name="drug_id" required /><br />
 
-            <label for="quantity">Quantity:</label>
-            <input type="text" id="quantity" name="quantity" required /><br />
+        <label for="quantity">Quantity:</label>
+        <input type="text" id="quantity" name="quantity" required /><br />
 
-            <label for="order_date">Order Date:</label>
-            <input
-              type="date"
-              id="order_date"
-              name="order_date"
-              required
-            /><br />
+        <label for="order_date">Order Date:</label>
+        <input type="date" id="order_date" name="order_date" required /><br />
 
-            <label for="total_price">Total Price:</label>
-            <input
-              type="text"
-              id="total_price"
-              name="total_price"
-              required
-            /><br />
+        <label for="total_price">Total Price:</label>
+        <input type="text" id="total_price" name="total_price" required /><br />
 
-            <button type="button" onclick="submitOrder()">Submit Order</button>
-          </form>
+        <button type="button" onclick="submitOrder()">Submit Order</button>
+      </form>
+    </div>
+      <!-- Form to insert data into the drugs table -->
+      <div class="form-contain">
+        <form id="drugForm">
+        <h2 >Drugs Data</h2>
+        <label for="drug_name">Drug Name:</label>
+        <input type="text" id="drug_name" name="drug_name" required /><br />
 
-          <!-- Form to insert data into the drugs table -->
-          <h2 style='text-align: center'>Drugs Data-Admin</h2>
-          <form id="drugForm">
-            <label for="drug_name">Drug Name:</label>
-            <input type="text" id="drug_name" name="drug_name" required /><br />
+        <label for="manufacturer_id">Manufacturer ID:</label>
+        <input type="text" id="manufacturer_id" name="manufacturer_id" required /><br />
 
-            <label for="manufacturer_id">Manufacturer ID:</label>
-            <input
-              type="text"
-              id="manufacturer_id"
-              name="manufacturer_id"
-              required
-            /><br />
+        <label for="dosage">Dosage:</label>
+        <input type="text" id="dosage" name="dosage" /><br />
 
-            <label for="dosage">Dosage:</label>
-            <input type="text" id="dosage" name="dosage" /><br />
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required /><br />
 
-            <label for="price">Price:</label>
-            <input type="text" id="price" name="price" required /><br />
+        <button type="button" onclick="submitDrug()">Add Drug</button>
+      </form>
+    </div>
+    <div class="form-contain">
+      <form id="manufacturerForm">
+        <h2 >Manufacturers Table</h2>
+        <!-- <label for="manufacturer_id">Manufacturer Id:</label> -->
+        <!-- <input type="text" id="manufacturer_id" name="manufacturer_id" required /><br /> -->
 
-            <button type="button" onclick="submitDrug()">Submit Drug</button>
-          </form>
-          <h2 style='text-align: center'>Manufacturers Table</h2>
-          <form id="manufacturerForm">
-            <label for="manufacturer_id">Manufacturer Id:</label>
-            <input
-              type="text"
-              id="manufacturer_id"
-              name="manufacturer_id"
-              required
-            /><br />
+        <label for="manufacturer_name">Manufacturer Name:</label>
+        <input type="text" id="manufacturer_name" name="manufacturer_name" required /><br />
 
-            <label for="manufacturer_name">Manufacturer Name:</label>
-            <input
-              type="text"
-              id="manufacturer_name"
-              name="manufacturer_name"
-              required
-            /><br />
+        <label for="manufacturer_address">Manufacturer Address:</label>
+        <input type="text" id="manufacturer_address" name="manufacturer_address" /><br />
 
-            <label for="manufacturer_address">Manufacturer Address:</label>
-            <input
-              type="text"
-              id="manufacturer_address"
-              name="manufacturer_address"
-            /><br />
+        <label for="manufacturer_phone">Manufacturer Phone Number:</label>
+        <input type="text" id="manufacturer_phone" name="manufacturer_phone" /><br />
 
-            <label for="manufacturer_phone">Manufacturer Phone Number:</label>
-            <input
-              type="text"
-              id="manufacturer_phone"
-              name="manufacturer_phone"
-            /><br />
+        <button type="button" onclick="submitManufacturer()">
+          Add Manufacturer
+        </button>
+      </form>
+    </div>
 
-            <button type="button" onclick="submitManufacturer()">
-              Submit Manufacturer
-            </button>
-          </form>
+    <div class="form-contain">
+      <form id="supplierForm">
+        <h2 >Suppliers Data-Admin</h2>
+        <label for="supplier_id">Supplier ID:</label>
+        <input type="text" id="supplier_id" name="supplier_id" required /><br />
+        <label for="supplier_name">Supplier Name:</label>
 
-          <!-- Table to view the content of the orders table -->
-          <h2>View Orders Table</h2>
-          <table border="1" id="ordersTable">
-            <tr>
-              <th>Order ID</th>
-              <th>Drug ID</th>
-              <th>Quantity</th>
-              <th>Order Date</th>
-              <th>Total Price</th>
-            </tr>
-          </table>
-          <h2>View Manufacturers Table</h2>
-          <table border="1" id="manufacturersTable">
-            <tr>
-              <th>Manufacturer ID</th>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
-            </tr>
-          </table>
+        <input type="text" id="supplier_name" name="supplier_name" required /><br />
 
-          <!-- View Drugs Table -->
-          <h2>View Drugs Table</h2>
-          <table border="1" id="drugsTable">
-            <tr>
-              <th>Drug ID</th>
-              <th>Name</th>
-              <th>Manufacturer ID</th>
-              <th>Dosage</th>
-              <th>Price</th>
-            </tr>
-          </table>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" /><br />
 
-          <script>
-            // Function to submit order data
-            function submitOrder() {
-              const formData = {
-                drug_id: document.getElementById("drug_id").value,
-                quantity: document.getElementById("quantity").value,
-                order_date: document.getElementById("order_date").value,
-                total_price: document.getElementById("total_price").value,
-              };
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" required /><br />
 
-              fetch("http://localhost:4000/submitOrders", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-              })
-                .then((response) => response.text())
-                .then((data) => {
-                  console.log(data);
-                  // Refresh the orders table after submission
-                  fetchOrders();
-                })
-                .catch((error) => console.error("Error:", error));
-            }
+        <button type="button" onclick="submitSupplier()">Add Supplier</button>
+      </form>
+    </div>
 
-            // Function to submit drug data
-            function submitDrug() {
-              const formData = {
-                name: document.getElementById("drug_name").value,
-                manufacturer_id:
-                  document.getElementById("manufacturer_id").value,
-                dosage: document.getElementById("dosage").value,
-                price: document.getElementById("price").value,
-              };
+    <div class="form-contain">
+      <form id="customerForm">
+        <h2 >Customers Data-Admin</h2>
+        <label for="customer_id">Customer ID:</label>
+        <input type="text" id="customer_id" name="customer_id" required /><br />
+        <label for="customer_name">Customer Name:</label>
+        <input type="text" id="customer_name" name="customer_name" required /><br />
 
-              fetch("http://localhost:4000/submitDrugs", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-              })
-                .then((response) => response.text())
-                .then((data) => {
-                  console.log(data);
-                  // Refresh the drugs table after submission
-                  fetchDrugs();
-                })
-                .catch((error) => console.error("Error:", error));
-            }
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" /><br />
 
-            function submitManufacturer() {
-              const formData = {
-                manufacturer_id:
-                  document.getElementById("manufacturer_id").value,
-                name: document.getElementById("manufacturer_name").value,
-                address: document.getElementById("manufacturer_address").value,
-                phone_number:
-                  document.getElementById("manufacturer_phone").value,
-              };
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="customer_phone" name="customer_phone" required /><br />
 
-              fetch("http://localhost:4000/submitmf", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-              })
-                .then((response) => response.text())
-                .then((data) => {
-                  console.log(data);
-                  // Refresh the manufacturers table after submission
-                  fetchManufacturers();
-                })
-                .catch((error) => console.error("Error:", error));
-            }
+        <button type="button" onclick="submitCustomer()">Add Customer</button>
+      </form>
+    </div>
+  </div>
 
-            // Function to fetch orders data and update the table
-            function fetchOrders() {
-              fetch("http://localhost:4000/fetchAllOrderData")
-                .then((response) => response.json())
-                .then((data) => {
-                  const table = document.getElementById("ordersTable");
-                  table.innerHTML = `
+      <!-- Table to view the content of the orders table -->
+      <h2 style='text-align: center'>View Orders Table</h2>
+      <table border="1" id="ordersTable">
+        <tr>
+          <th>Order ID</th>
+          <th>Drug ID</th>
+          <th>Quantity</th>
+          <th>Order Date</th>
+          <th>Total Price</th>
+        </tr>
+      </table>
+      <h2 style='text-align: center'>View Manufacturers Table</h2>
+      <table border="1" id="manufacturersTable">
+        <tr>
+          <th>Manufacturer ID</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone Number</th>
+        </tr>
+      </table>
+
+      <!-- View Drugs Table -->
+      <h2 style='text-align: center'>View Drugs Table</h2>
+      <table border="1" id="drugsTable">
+        <tr>
+          <th>Drug ID</th>
+          <th>Name</th>
+          <th>Manufacturer ID</th>
+          <th>Dosage</th>
+          <th>Price</th>
+        </tr>
+      </table>
+
+      <h2 style='text-align: center'>View Suppliers Table</h2>
+      <table border="1" id="suppliersTable">
+        <tr>
+          <th>Supplier ID</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone Number</th>
+        </tr>
+      </table>
+      <h2 style='text-align: center'>View Customers Table</h2>
+      <table border="1" id="customersTable">
+        <tr>
+          <th>Customer ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+        </tr>
+      </table>
+
+
+      <script>
+        // Function to submit order data
+        function submitOrder() {
+          const formData = {
+            drug_id: document.getElementById("drug_id").value,
+            quantity: document.getElementById("quantity").value,
+            order_date: document.getElementById("order_date").value,
+            total_price: document.getElementById("total_price").value,
+          };
+
+          fetch("http://localhost:4000/submitOrders", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the orders table after submission
+              fetchOrders();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+
+        // Function to submit drug data
+        function submitDrug() {
+          const formData = {
+            name: document.getElementById("drug_name").value,
+            manufacturer_id:
+              document.getElementById("manufacturer_id").value,
+            dosage: document.getElementById("dosage").value,
+            price: document.getElementById("price").value,
+          };
+
+          fetch("http://localhost:4000/submitDrugs", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the drugs table after submission
+              fetchDrugs();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+
+        function submitManufacturer() {
+          const formData = {
+            // manufacturer_id:document.getElementById("manufacturer_id").value,
+            name: document.getElementById("manufacturer_name").value,
+            address: document.getElementById("manufacturer_address").value,
+            phone_number:
+              document.getElementById("manufacturer_phone").value,
+          };
+
+          fetch("http://localhost:4000/submitmf", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the manufacturers table after submission
+              fetchManufacturers();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+        function submitCustomer() {
+          const formData = {
+            customer_id: document.getElementById("customer_id").value,
+            customer_name: document.getElementById("customer_name").value,
+            email: document.getElementById("email").value,
+            customer_phone: document.getElementById("customer_phone").value,
+          };
+
+          fetch("http://localhost:4000/submitCustomer", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the customers table after submission
+              fetchCustomers();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+        function submitSupplier() {
+          const formData = {
+            supplier_id: document.getElementById("supplier_id").value,
+            supplier_name: document.getElementById("supplier_name").value,
+            address: document.getElementById("address").value,
+            phone_number: document.getElementById("phone_number").value,
+          };
+
+          fetch("http://localhost:4000/submitSupplier", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the suppliers table after submission
+              fetchSuppliers();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+
+        // Function to fetch orders data and update the table
+        function fetchOrders() {
+          fetch("http://localhost:4000/fetchAllOrderData")
+            .then((response) => response.json())
+            .then((data) => {
+              const table = document.getElementById("ordersTable");
+              table.innerHTML = `
                     <tr>
                         <th>Order ID</th>
                         <th>Drug ID</th>
@@ -226,8 +316,8 @@
                         <th>Total Price</th>
                     </tr>
                     ${data
-                      .map(
-                        (order) => `
+                  .map(
+                    (order) => `
                         <tr>
                             <td>${order.order_id}</td>
                             <td>${order.drug_id}</td>
@@ -238,18 +328,18 @@
                             <td><button onclick="deleteOrder(${order.order_id})">Delete</button></td>
                         </tr>
                     `
-                      )
-                      .join("")}
+                  )
+                  .join("")}
                 `;
-                })
-                .catch((error) => console.error("Error:", error));
-            }
-            function fetchManufacturers() {
-              fetch("http://localhost:4000/fetchAllMfData")
-                .then((response) => response.json())
-                .then((data) => {
-                  const table = document.getElementById("manufacturersTable");
-                  table.innerHTML = `
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+        function fetchManufacturers() {
+          fetch("http://localhost:4000/fetchAllMfData")
+            .then((response) => response.json())
+            .then((data) => {
+              const table = document.getElementById("manufacturersTable");
+              table.innerHTML = `
                     <tr>
                         <th>Manufacturer ID</th>
                         <th>Name</th>
@@ -257,29 +347,32 @@
                         <th>Phone Number</th>
                     </tr>
                     ${data[0]
-                      .map(
-                        (manufacturer) => `
+                  .map(
+                    (manufacturer) => `
                         <tr>
                             <td>${manufacturer.manufacturer_id}</td>
                             <td>${manufacturer.name}</td>
                             <td>${manufacturer.address}</td>
                             <td>${manufacturer.phone_number}</td>
+                            
+                            <td><button type="button" onclick="deleteManufacturer(${manufacturer.manufacturer_id})">Delete</button></td>
+                            <td><button type="button" onclick="updateManufacturer(${manufacturer.manufacturer_id})">Update</button></td>
                         </tr>
                     `
-                      )
-                      .join("")}
+                  )
+                  .join("")}
                 `;
-                })
-                .catch((error) => console.error("Error:", error));
-            }
+            })
+            .catch((error) => console.error("Error:", error));
+        }
 
-            // Function to fetch drugs data and update the table
-            function fetchDrugs() {
-              fetch("http://localhost:4000/fetchAllDrugData")
-                .then((response) => response.json())
-                .then((data) => {
-                  const table = document.getElementById("drugsTable");
-                  table.innerHTML = `
+        // Function to fetch drugs data and update the table
+        function fetchDrugs() {
+          fetch("http://localhost:4000/fetchAllDrugData")
+            .then((response) => response.json())
+            .then((data) => {
+              const table = document.getElementById("drugsTable");
+              table.innerHTML = `
                     <tr>
                         <th>Drug ID</th>
                         <th>Name</th>
@@ -289,8 +382,8 @@
                         
                     </tr>
                     ${data
-                      .map(
-                        (drug) => `
+                  .map(
+                    (drug) => `
                         <tr>
                             <td>${drug.drug_id}</td>
                             <td>${drug.name}</td>
@@ -301,137 +394,272 @@
                             <td><button onclick="deleteDrug(${drug.drug_id})">Delete</button></td>
                         </tr>
                     `
-                      )
-                      .join("")}
+                  )
+                  .join("")}
                 `;
-                })
-                .catch((error) => console.error("Error:", error));
-            }
-            function deleteOrder(orderId) {
-              fetch(`http://localhost:4000/deleteOrder/${orderId}`, {
-                method: "DELETE",
-              })
-                .then((response) => response.text())
-                .then((data) => {
-                  console.log(data);
-                  // Refresh the orders table after deletion
-                  fetchOrders();
-                })
-                .catch((error) => console.error("Error:", error));
-            }
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+        function fetchCustomers() {
+          fetch("http://localhost:4000/fetchAllCustomerData")
+            .then((response) => response.json())
+            .then((data) => {
+              const table = document.getElementById("customersTable");
+              table.innerHTML = `
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+            </tr>
+            ${data
+                  .map(
+                    (customer) => `
+                <tr>
+                    <td>${customer.customer_id}</td>
+                    <td>${customer.name}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.phone_number}</td>
+                    <td><button onclick="updateCustomer(${customer.customer_id})">Update</button></td>
+                    <td><button onclick="deleteCustomer(${customer.customer_id})">Delete</button></td>
+                </tr>
+            `
+                  )
+                  .join("")}
+          `;
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+        function fetchSuppliers() {
+          fetch("http://localhost:4000/fetchAllSupplierData")
+            .then((response) => response.json())
+            .then((data) => {
+              const table = document.getElementById("suppliersTable");
+              table.innerHTML = `
+            <tr>
+                <th>Supplier ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+            </tr>
+            ${data
+                  .map(
+                    (supplier) => `
+                <tr>
+                    <td>${supplier.supplier_id}</td>
+                    <td>${supplier.name}</td>
+                    <td>${supplier.address}</td>
+                    <td>${supplier.phone_number}</td>
+                    <td><button onclick="updateSupplier(${supplier.supplier_id})">Update</button></td>
+                    <td><button onclick="deleteSupplier(${supplier.supplier_id})">Delete</button></td>
+                </tr>
+            `
+                  )
+                  .join("")}
+          `;
+            })
+            .catch((error) => console.error("Error:", error));
+        }
 
-            // Function to delete drug by ID
-            function deleteDrug(drugId) {
-              fetch(`http://localhost:4000/deleteDrug/${drugId}`, {
-                method: "DELETE",
-              })
-                .then((response) => response.text())
-                .then((data) => {
-                  console.log(data);
-                  // Refresh the drugs table after deletion
-                  fetchDrugs();
-                })
-                .catch((error) => console.error("Error:", error));
-            }
+        function deleteOrder(orderId) {
+          fetch(`http://localhost:4000/deleteOrder/${orderId}`, {
+            method: "DELETE",
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the orders table after deletion
+              fetchOrders();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
 
-            // Function to delete manufacturer by ID
-            function deleteManufacturer(manufacturerId) {
-              fetch(
-                `http://localhost:4000/deleteManufacturer/${manufacturerId}`,
-                {
-                  method: "DELETE",
-                }
-              )
-                .then((response) => response.text())
-                .then((data) => {
-                  console.log(data);
-                  // Refresh the manufacturers table after deletion
-                  fetchManufacturers();
-                })
-                .catch((error) => console.error("Error:", error));
-            }
-            // Function to update order by ID
-function updateOrder(orderId) {
-    const formData = {
-        quantity: prompt('Enter new quantity:'),
-        total_price: prompt('Enter new total price:'),
-    };
+        // Function to delete drug by ID
+        function deleteDrug(drugId) {
+          fetch(`http://localhost:4000/deleteDrug/${drugId}`, {
+            method: "DELETE",
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the drugs table after deletion
+              fetchDrugs();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
 
-    fetch(`http://localhost:4000/updateOrder/${orderId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-        // Refresh the orders table after update
+        // Function to delete manufacturer by ID
+        function deleteManufacturer(manufacturerId) {
+          fetch(
+            `http://localhost:4000/deleteManufacturer/${manufacturerId}`,
+            {
+              method: "DELETE",
+            }
+          )
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the manufacturers table after deletion
+              fetchManufacturers();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+        function deleteCustomer(customerId) {
+          fetch(`http://localhost:4000/deleteCustomer/${customerId}`, {
+            method: "DELETE",
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the customers table after deletion
+              fetchCustomers();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+        function deleteSupplier(supplierId) {
+          fetch(`http://localhost:4000/deleteSupplier/${supplierId}`, {
+            method: "DELETE",
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              // Refresh the suppliers table after deletion
+              fetchSuppliers();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+
+
+        // Function to update order by ID
+        function updateOrder(orderId) {
+          const formData = {
+            quantity: prompt('Enter new quantity:'),
+            total_price: prompt('Enter new total price:'),
+          };
+
+          fetch(`http://localhost:4000/updateOrder/${orderId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          })
+            .then(response => response.text())
+            .then(data => {
+              console.log(data);
+              // Refresh the orders table after update
+              fetchOrders();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Function to update drug by ID
+        function updateDrug(drugId) {
+          const formData = {
+            name: prompt('Enter new drug name:'),
+            dosage: prompt('Enter new dosage:'),
+            price: prompt('Enter new price:'),
+          };
+
+          fetch(`http://localhost:4000/updateDrug/${drugId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          })
+            .then(response => response.text())
+            .then(data => {
+              console.log(data);
+              // Refresh the drugs table after update
+              fetchDrugs();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Function to update manufacturer by ID
+        function updateManufacturer(manufacturerId) {
+          const formData = {
+            name: prompt('Enter new manufacturer name:'),
+            address: prompt('Enter new address:'),
+            phone_number: prompt('Enter new phone number:'),
+          };
+
+          fetch(`http://localhost:4000/updateManufacturer/${manufacturerId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          })
+            .then(response => response.text())
+            .then(data => {
+              console.log(data);
+              // Refresh the manufacturers table after update
+              fetchManufacturers();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        function updateSupplier(supplierId) {
+          const formData = {
+            supplier_name: prompt('Enter new supplier name:'),
+            address: prompt('Enter new address:'),
+            supplier_phone: prompt('Enter new phone number:'),
+          };
+
+          fetch(`http://localhost:4000/updateSupplier/${supplierId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          })
+            .then(response => response.text())
+            .then(data => {
+              console.log(data);
+              // Refresh the suppliers table after update
+              fetchSuppliers();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        function updateCustomer(customerId) {
+          const formData = {
+            customer_name: prompt('Enter new customer name:'),
+            email: prompt('Enter new email:'),
+            customer_phone: prompt('Enter new phone number:'),
+          };
+
+          fetch(`http://localhost:4000/updateCustomer/${customerId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          })
+            .then(response => response.text())
+            .then(data => {
+              console.log(data);
+              // Refresh the customers table after update
+              fetchCustomers();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+
+        // Fetch initial data when the page loads
         fetchOrders();
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-// Function to update drug by ID
-function updateDrug(drugId) {
-    const formData = {
-        name: prompt('Enter new drug name:'),
-        dosage: prompt('Enter new dosage:'),
-        price: prompt('Enter new price:'),
-    };
-
-    fetch(`http://localhost:4000/updateDrug/${drugId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-        // Refresh the drugs table after update
-        fetchDrugs();
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-// Function to update manufacturer by ID
-function updateManufacturer(manufacturerId) {
-    const formData = {
-        name: prompt('Enter new manufacturer name:'),
-        address: prompt('Enter new address:'),
-        phone_number: prompt('Enter new phone number:'),
-    };
-
-    fetch(`http://localhost:4000/updateManufacturer/${manufacturerId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-        // Refresh the manufacturers table after update
         fetchManufacturers();
-    })
-    .catch(error => console.error('Error:', error));
-}
+        fetchDrugs();
+        fetchSuppliers();
+        fetchCustomers();
+      </script>
+    </body>
 
+    </html>
 
-            // Fetch initial data when the page loads
-            fetchOrders();
-            fetchManufacturers();
-            fetchDrugs();
-          </script>
-        </body>
-      </html>
+    <div id="queryResult"></div>
+  </div>
+  <script src="home.js"></script>
+</body>
 
-      <div id="queryResult"></div>
-    </div>
-    <script src="home.js"></script>
-  </body>
 </html>
